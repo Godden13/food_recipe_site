@@ -1,26 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Landing from './components/LandingPage';
+import meal1 from './assets/achu.png';
+import Recipes from './components/recipes/Recipes';
+import RecipeContext from './components/RecipeContext';
+import { useState } from 'react';
+
+const getDataFromLS = () => {
+  const data = localStorage.getItem('meals');
+  if (data) {
+    return JSON.parse(data);
+  } else {
+    return [];
+  }
+};
 
 function App() {
+  const [meals, setMeals] = useState(getDataFromLS);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit
-          <code>src/App.js</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RecipeContext.Provider value={{ wallets: meals, setMeals }}>
+      <div className="App">
+        <Landing />
+      </div>
+    </RecipeContext.Provider>
   );
 }
 

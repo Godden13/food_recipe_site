@@ -1,0 +1,33 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  width: 90vw;
+  height: 40vh;
+  margin: auto;
+}
+
+.hero-writeUp {
+  max-width: 50%;
+}
+
+.hero-writeUp h1,
+p {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-writeUp h1 {
+  font-size: 4vw;
+  padding: 3vw;
+}
+
+.hero-writeUp p {
+  font-size: 2vw;
+  opacity: 0.6;
+  max-width: 90%;
+}
+
+.hero-img {
+  width: 35vw;
+  height: 100vh;
+}
