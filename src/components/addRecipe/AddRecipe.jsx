@@ -1,25 +1,98 @@
+import { useState } from 'react';
+import { FaPlusCircle } from 'react-icons/fa';
+
 import './AddRecipe.css';
 
-export default function AddREcipe() {
-  const [add, setAdd] = useState(false);
+export default function AddRecipe() {
+  const [addInfo, setAddInfo] = useState(false);
+  // const [editInfo, setEditInfo] = useState(false);
+
+  const toggleModal = () => {
+    setAddInfo(!addInfo);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const recipe = {
+      name: target.name.value,
+      description: target.description.value,
+      recipe: target.recipe.value,
+      // image: getBase64Image(target.image.value),
+    };
+    await localStorage.setItem('recipe', JSON.stringify(recipe));
+    toggleModal();
+  };
+
+  const recipes = JSON.parse(localStorage.getItem('recipe'));
+
+  // const toggleEditModal = () => {
+  //   setEditInfo(!editInfo);
+  // };
 
   return (
     <div className="addRecipe">
-      <button type="submit" className="addBtn">
-        Add Recipe
-      </button>
-
-      {add && (
-        <form className="modal">
-          <div className="overlay">
-            <div className="adder">
-              <h2>Add Recipe</h2>
-              <div className="inputs">
-                <input type="text" id="dishName" />
-              </div>
+      <div className="recipesData">
+        <div id="add" className="crudData" onClick={toggleModal}>
+          <FaPlusCircle className="addItem" />
+        </div>
+        {/* {recipes?.map((recipe) => {
+          return (
+            <div className="crudData" key={recipe.name}>
+              <h3>{recipe.name}</h3>
+              <p>{recipe.description}</p>
+              <p>{recipe.recipe}</p>
             </div>
+          );
+        })} */}
+        <div className="crudData">
+          <h3>{recipes.name}</h3>
+          <p>{recipes.description}</p>
+          <p>{recipes.recipe}</p>
+        </div>
+      </div>
+
+      {addInfo && (
+        <div className="modal">
+          <div className="overLay">
+            <form className="addData" onSubmit={handleSubmit}>
+              <h2>Add a meal</h2>
+              <div className="signupCard">
+                <h2>Name</h2>
+                <input type="text" placeholder="name" name="name" required />
+              </div>
+              <div className="signupCard">
+                <h2>Description</h2>
+                <textarea
+                  type="text"
+                  placeholder="description"
+                  name="description"
+                  required
+                />
+              </div>
+              <div className="signupCard">
+                <h2>Recipe</h2>
+                <textarea
+                  type="text"
+                  placeholder="recipe"
+                  name="recipe"
+                  required
+                />
+              </div>
+              <div className="signupCard">
+                <h2>Add image</h2>
+                <input type="file" placeholder="image" name="image" required />
+              </div>
+
+              <button type="submit" className="add">
+                Add
+              </button>
+              <button type="button" className="close" onClick={toggleModal}>
+                X
+              </button>
+            </form>
           </div>
-        </form>
+        </div>
       )}
     </div>
   );

@@ -1,8 +1,9 @@
 .hero {
   display: flex;
   justify-content: space-between;
-  width: 90vw;
-  height: 40vh;
+  align-items: center;
+  width: 90%;
+  height: 30%;
   margin: auto;
 }
 
@@ -29,5 +30,5 @@ p {
 
 .hero-img {
   width: 35vw;
-  height: 100vh;
+  height: 65vh;
 }

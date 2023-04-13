@@ -8,7 +8,7 @@ export default function Recipes() {
 
   return (
     <div className="recipes" id="recipes">
-      {meal.map((recipe) => {
+      {meal?.map((recipe) => {
         return (
           <div className="recipe" key={recipe.name}>
             <img src={recipe.src} alt={recipe.name} />

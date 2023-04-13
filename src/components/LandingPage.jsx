@@ -1,3 +1,4 @@
+import AddRecipe from './addRecipe/AddRecipe';
 import Hero from './hero/Hero';
 import './LandingPage.css';
 import NavBar from './NavBar/NavBar';
@@ -11,6 +12,7 @@ export default function Landing() {
       <Hero />
       {/* <Reviews /> */}
       {/* <Recipes /> */}
+      <AddRecipe />
     </div>
   );
 }
