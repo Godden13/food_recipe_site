@@ -5,6 +5,7 @@ import './AddRecipe.css';
 
 export default function AddRecipe() {
   const [addInfo, setAddInfo] = useState(false);
+  const [recipeName, setRecipeName] = useState('');
   // const [editInfo, setEditInfo] = useState(false);
 
   const toggleModal = () => {
@@ -20,15 +21,17 @@ export default function AddRecipe() {
       recipe: target.recipe.value,
       // image: getBase64Image(target.image.value),
     };
-    await localStorage.setItem('recipe', JSON.stringify(recipe));
+    await localStorage.setItem(`${recipeName}`, JSON.stringify(recipe));
     toggleModal();
   };
 
   const recipes = JSON.parse(localStorage.getItem('recipe'));
 
-  // const toggleEditModal = () => {
+  // const toggleEditModal = () => { 
   //   setEditInfo(!editInfo);
   // };
+
+  console.log(typeof recipes);
 
   return (
     <div className="addRecipe">
@@ -37,6 +40,7 @@ export default function AddRecipe() {
           <FaPlusCircle className="addItem" />
         </div>
         {/* {recipes?.map((recipe) => {
+          setRecipeName(recipe.name);
           return (
             <div className="crudData" key={recipe.name}>
               <h3>{recipe.name}</h3>
@@ -45,11 +49,11 @@ export default function AddRecipe() {
             </div>
           );
         })} */}
-        <div className="crudData">
+        {/* <div className="crudData">
           <h3>{recipes.name}</h3>
           <p>{recipes.description}</p>
           <p>{recipes.recipe}</p>
-        </div>
+        </div> */}
       </div>
 
       {addInfo && (
