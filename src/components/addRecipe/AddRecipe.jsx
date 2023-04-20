@@ -24,6 +24,7 @@ export default function AddRecipe() {
     setAddInfo(!addInfo);
   };
 
+  const recipeArr = JSON.parse(localStorage.getItem('recipe') || '[]');
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { target } = e;
@@ -33,11 +34,14 @@ export default function AddRecipe() {
       recipe: target.recipe.value,
       // image: getBase64Image(target.image.value),
     };
-    await localStorage.setItem(`${recipeName}`, JSON.stringify(recipe));
+
+    recipeArr.push(recipe);
+
+    await localStorage.setItem(`${recipeName}`, JSON.stringify(recipeArr));
     toggleModal();
   };
 
-  const recipes = JSON.parse(localStorage.getItem('recipe'));
+  const recipes = JSON.parse(localStorage.getItem(recipeArr));
 
   console.log(typeof recipes);
 
