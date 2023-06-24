@@ -6,16 +6,38 @@ import './AddRecipe.css';
 
 export default function AddRecipe() {
   const [addInfo, setAddInfo] = useState(false);
-  const [url, setUrl] = useState('');
+  // const [url, setUrl] = useState('');
   const [recipeName, setRecipeName] = useState('');
 
-  const upLoader = (file) => {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      localStorage.setItem('recent-image', reader.result);
-      setUrl(localStorage.getItem('recent-image'));
+  // const upLoader = (file) => {
+  //   const reader = new FileReader();
+  //   reader.addEventListener('load', () => {
+  //     localStorage.setItem('recent-image', reader.result);
+  //     setUrl(localStorage.getItem('recent-image'));
+  //   });
+  //   reader.readAsDataURL(file);
+  // };
+
+  const convert2base64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
     });
-    reader.readAsDataURL(file);
+  };
+
+  const uploadImage = async (event) => {
+    const file = event.target.files[0];
+    const base64 = await convert2base64(file);
+    console.log(base64);
+
+    setValue(() => ({ image: base64 }));
   };
 
   useEffect(() => {}, []);
@@ -51,7 +73,7 @@ export default function AddRecipe() {
         <div id="add" className="crudData" onClick={toggleModal}>
           <FaPlusCircle className="addItem" />
         </div>
-        {/* {recipes?.map((recipe) => {
+        {recipes?.map((recipe) => {
           setRecipeName(recipe.name);
           return (
             <div className="crudData" key={recipe.name}>
@@ -60,12 +82,7 @@ export default function AddRecipe() {
               <p>{recipe.recipe}</p>
             </div>
           );
-        })} */}
-        {/* <div className="crudData">
-          <h3>{recipes.name}</h3>
-          <p>{recipes.description}</p>
-          <p>{recipes.recipe}</p>
-        </div> */}
+        })}
       </div>
 
       {addInfo && (
