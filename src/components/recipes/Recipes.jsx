@@ -1,10 +1,18 @@
-import { useContext } from 'react';
-import RecipeContext from '../RecipeContext';
+import { useState } from 'react';
 import './Recipes.css';
 
 export default function Recipes() {
-  const { recipes, setRecipes } = useContext(RecipeContext);
-  const meal = Object.keys(recipes);
+  const getDataFromLS = () => {
+    const data = localStorage.getItem('recipe');
+    console.log(data);
+    if (data) {
+      return JSON.parse([data]);
+    }
+    return [];
+  };
+  const [recipe, setRecipe] = useState(getDataFromLS);
+  const meal = Object.keys(recipe);
+  console.log(recipe.name);
 
   return (
     <div className="recipes" id="recipes">

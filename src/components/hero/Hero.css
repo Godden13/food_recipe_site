@@ -31,4 +31,6 @@ p {
 .hero-img {
   width: 35vw;
   height: 65vh;
+  object-fit: contain;
+  border-radius: 50%;
 }

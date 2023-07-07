@@ -8,6 +8,7 @@ export default function AddRecipe() {
   const [addInfo, setAddInfo] = useState(false);
   // const [url, setUrl] = useState('');
   const [recipeName, setRecipeName] = useState('');
+  // const [value, setValue] = useState();
 
   // const upLoader = (file) => {
   //   const reader = new FileReader();
@@ -18,27 +19,27 @@ export default function AddRecipe() {
   //   reader.readAsDataURL(file);
   // };
 
-  const convert2base64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
+  // const convert2base64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
 
-  const uploadImage = async (event) => {
-    const file = event.target.files[0];
-    const base64 = await convert2base64(file);
-    console.log(base64);
+  // const uploadImage = async (event) => {
+  //   const file = event.target.files[0];
+  //   const base64 = await convert2base64(file);
+  //   console.log(base64);
 
-    setValue(() => ({ image: base64 }));
-  };
+  //   setValue(() => ({ image: base64 }));
+  // };
 
   useEffect(() => {}, []);
 
@@ -54,12 +55,11 @@ export default function AddRecipe() {
       name: target.name.value,
       description: target.description.value,
       recipe: target.recipe.value,
-      // image: getBase64Image(target.image.value),
     };
 
     recipeArr.push(recipe);
 
-    await localStorage.setItem(`${recipeName}`, JSON.stringify(recipeArr));
+    await localStorage.setItem(`${recipe.name}`, JSON.stringify(recipeArr));
     toggleModal();
   };
 
