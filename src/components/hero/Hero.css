@@ -1,0 +1,35 @@
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+}
+
+.hero-writeUp {
+  max-width: 50%;
+}
+
+.hero-writeUp h1,
+p {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-writeUp h1 {
+  font-size: 3.7vw;
+  margin-bottom: 20px;
+}
+
+.hero-writeUp p {
+  font-size: 1.7vw;
+  opacity: 0.6;
+  max-width: 90%;
+}
+
+.hero-img {
+  width: 35vw;
+  height: 65vh;
+  object-fit: contain;
+  border-radius: 50%;
+}
