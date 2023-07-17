@@ -1,13 +1,12 @@
 .navBar {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-size: 1.5vw;
-  background-image: linear-gradient(90deg, #fff, #ffc0cb);
   padding-top: 2vh;
 }
 
 #name span {
-  color: rgb(207, 95, 114);
+  color: #ff9100;
 }
 
 .app-nav {
@@ -23,7 +22,7 @@
 
 a:hover {
   text-decoration: underline;
-  text-decoration-color: rgb(207, 95, 114);
+  text-decoration-color: #ff9100;
   opacity: 1;
 }
 .app-title {
